@@ -1,6 +1,7 @@
 var http = require("http");
 var handler = require("./request-handler");
 var initialize = require("./initialize.js");
+var arch = require("../helpers/archive-helpers.js");
 
 // Why do you think we have this here?
 // HINT: It has to do with what's in .gitignore
@@ -17,3 +18,9 @@ if (module.parent) {
   console.log("Listening on http://" + ip + ":" + port);
 }
 
+// console.log("outside", arch.readListOfUrls());
+console.log("outside", arch.addUrlToList("johnson.com"))
+setTimeout(console.log("is it true?", arch.isUrlInList("johnson.com", function(val){
+  return val
+})), 1000
+)
