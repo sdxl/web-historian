@@ -24,3 +24,7 @@ if (module.parent) {
 // setTimeout(function(){
 //   console.log(exports.paths.list)
 // }, 1000)
+
+//
+//
+//something to make the cron job file run here?

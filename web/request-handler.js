@@ -46,6 +46,7 @@ exports.handleRequest = function (req, res) {
       })
 
       //this block separately runs to see if the page is archived yet.
+      //needs logic to filter bullshit
       arch.isUrlArchived(urlToCheck, function(bool){
         if (bool) {
           console.log("it is archived... or should be: ", (arch.paths.archivedSites + "/" + urlToCheck))
