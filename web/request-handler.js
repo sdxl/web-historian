@@ -12,7 +12,7 @@ exports.handleRequest = function (req, res) {
       if(err){
         headers["Content-Type"] = "text/plain";
         res.writeHead(404, headers);
-        res.end('Cannot find');
+        res.end('Cannot find index');
       }else{
         headers["Content-Type"] = "text/html";
         res.writeHead(200, headers);
@@ -47,13 +47,13 @@ exports.handleRequest = function (req, res) {
 
       //this block separately runs to see if the page is archived yet.
       arch.isUrlArchived(urlToCheck, function(bool){
-        if (!bool) {
-          console.log("it is archived... or should be")
-          fs.readFile('../archives/sites/' + urlToCheck, function(err, html){
+        if (bool) {
+          console.log("it is archived... or should be: ", (arch.paths.archivedSites + "/" + urlToCheck))
+          fs.readFile((arch.paths.archivedSites + "/" + urlToCheck), function(err, html){
             if(err){
               headers["Content-Type"] = "text/plain";
               res.writeHead(404, headers);
-              res.end('Cannot find');
+              res.end("isUrlArchived said it existed, but I couldn't find it.");
             }else{
               console.log("we're trying to serve up the archived page")
               headers["Content-Type"] = "text/html";
@@ -67,7 +67,7 @@ exports.handleRequest = function (req, res) {
             if(err){
               headers["Content-Type"] = "text/plain";
               res.writeHead(404, headers);
-              res.end('Cannot find');
+              res.end('Cannot find loading page');
             }else{
               console.log("we're trying to serve up the loading page")
               headers["Content-Type"] = "text/html";
@@ -104,7 +104,7 @@ exports.handleRequest = function (req, res) {
     console.log("failed, sending 404")
     headers["Content-Type"] = "text/plain";
     res.writeHead(404, headers);
-    res.end('Cannot find');
+    res.end("asked for something I'm not setup to handle");
   }
 };
   // res.end(archive.paths.list);

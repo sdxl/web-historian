@@ -36,6 +36,8 @@ exports.readListOfUrls = function(callback){
     }
   })
 };
+//turns file into an array by line breaks
+//executes callback on that array
 
 exports.isUrlInList = function(target, func){
   var bool = false;
@@ -46,6 +48,8 @@ exports.isUrlInList = function(target, func){
   func(bool)
   })
 };
+//
+//
 
 exports.addUrlToList = function(target, callback){
   //use fs.appendFile() to add url to exports.paths.list file;
@@ -66,12 +70,13 @@ exports.isUrlArchived = function(file, callback){
   fs.open((exports.paths.archivedSites + "/" + file), "r", function(err, fd){
     if (err) {
       // throw err
+      console.log("checked, it's not archived.")
       callback(false);
     } else {
+      console.log("this is archived: " + (exports.paths.archivedSites + "/" + file))
       callback(true);
     }
   })
-
 };
 
 exports.downloadUrls = function(arr){
