@@ -19,8 +19,8 @@ if (module.parent) {
 }
 
 // console.log("outside", arch.readListOfUrls());
-console.log("outside", arch.addUrlToList("johnson.com"))
-setTimeout(console.log("is it true?", arch.isUrlInList("johnson.com", function(val){
-  return val
-})), 1000
-)
+// exports.addUrlToList()
+
+// setTimeout(function(){
+//   console.log(exports.paths.list)
+// }, 1000)
